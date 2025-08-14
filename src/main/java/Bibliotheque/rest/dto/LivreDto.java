@@ -10,13 +10,14 @@ public class LivreDto {
 
     private Long id;
     private String titre;
-    private String auteur;
+    private AuteurDto auteur;
     private LocalDateTime dateCreation;
     private BigDecimal prix;
+    private String isbn;
 
 
 
-
+// On passe par Lombok
 
 //    public Long getId() { return id; }
 //

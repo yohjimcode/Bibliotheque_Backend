@@ -1,5 +1,7 @@
 package Bibliotheque.service;
 
+import Bibliotheque.infra.model.AuteurModel;
+import Bibliotheque.infra.repo.AuteurJpaRepository;
 import Bibliotheque.infra.repo.LivreJpaRepository;
 import Bibliotheque.infra.model.LivreModel;
 import Bibliotheque.rest.dto.LivreDto;
@@ -15,20 +17,21 @@ import java.util.stream.Collectors;
 
 /**
  * transactionnal : si echec, rollback + meilleure perf
- *
  */
 
 @Service
-@Transactional
 public class LivreService {
 
+    private final AuteurJpaRepository auteurJpaRepository;
     public final LivreJpaRepository livresJpaRepository;
     private final LivreMapper livreMapper;
 
 
-    public LivreService(LivreJpaRepository livresJpaRepository, LivreMapper livreMapper) {
+
+    public LivreService(LivreJpaRepository livresJpaRepository, LivreMapper livreMapper, AuteurJpaRepository auteurJpaRepository) {
         this.livresJpaRepository = livresJpaRepository;
         this.livreMapper = livreMapper;
+        this.auteurJpaRepository = auteurJpaRepository;
     }
 
     /**
@@ -53,33 +56,39 @@ public class LivreService {
         return livresJpaRepository.findById(id).map(livreMapper::toDto);
     }
 
-    public Optional<LivreDto> createLivre(LivreDto livreDto){
+    /**
+     * Crée un nouveau livre à partir d’un DTO.
+     * - toModel() → convertit le DTO en entité LivreModel
+     * - setDateCreation(...) → définit la date actuelle
+     * - save(...) → insère dans la base
+     * - toDto(...) → renvoie la version DTO du livre sauvegardé
+     */
+    public LivreDto createLivre(LivreDto livreDto){
         LivreModel livre = livreMapper.toModel(livreDto);
         livre.setDateCreation(LocalDateTime.now());
         LivreModel savedLivre = livresJpaRepository.save(livre);
-        return Optional.ofNullable(livreMapper.toDto(savedLivre));
+        return livreMapper.toDto(savedLivre);
     }
 
     /**
-     *
      * @param id
      * @param livreDto
      * @return
      * décomposition :
-     *  cherche le livre
+     *  cherche le livre en base
      *  Si trouvé, met à jour les champs et sauvegarde
-     *  converti et envoie
+     *  envoie au format DTO
      */
-    public Optional<LivreDto> updateLivre(Long id, LivreDto livreDto) {
-        return livresJpaRepository.findById(id)           // 1. Cherche le livre
-                .map(existingLivre -> {                  // 2. Si trouvé...
-                    existingLivre.setTitre(livreDto.getTitre());    // 3. Met à jour
-                    existingLivre.setAuteur(livreDto.getAuteur());
-                    existingLivre.setPrix(livreDto.getPrix());
-                    LivreModel savedLivre = livresJpaRepository.save(existingLivre); // 4. Sauvegarde
-                    return livreMapper.toDto(savedLivre);    // 5. Convertit et renvoie
-                });
-        // Si pas trouvé, renvoie Optional.empty()
+    public LivreDto updateLivre(Long id, LivreDto livreDto) {
+        LivreModel livreModel = livresJpaRepository.findById(id).orElseThrow();
+        livreModel.setTitre(livreDto.getTitre());
+        livreModel.setPrix(livreDto.getPrix());
+        if(livreDto.getAuteur() != null) {
+            AuteurModel auteurModel = auteurJpaRepository.findById(livreDto.getAuteur()
+                    .getId()).orElseThrow(() -> new RuntimeException("Auteur non trouvé"));
+            livreModel.setAuteur(auteurModel);
+        }
+        return livreMapper.toDto(livresJpaRepository.save(livreModel));
     }
 
     /**
@@ -95,6 +104,5 @@ public class LivreService {
         }
         return false;
     }
-
 }
 

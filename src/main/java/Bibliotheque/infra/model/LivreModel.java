@@ -9,19 +9,22 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name="LIVRES")
+@Table(name="LIVRE")
 public class LivreModel {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "titre", nullable = false)
     private String titre;
-    @Column(name = "auteur", nullable = false)
-    private String auteur;
-    @Column(name="D_Creation")
+    @Column(name="date_creation")
     private LocalDateTime dateCreation;
     @Column(name="prix",precision = 10, scale = 2) //10 chiffres max, 2 aprés la virgule (Mieux pour la BdD)
     private BigDecimal prix;
+    @Column(name="isbn")
+    private String isbn;
+
+    @ManyToOne(fetch = FetchType.LAZY) // ne charge que les données nécessaires - mode paresseux
+    @JoinColumn(name = "auteur_id") //colonne de jointure
+    private AuteurModel auteur;
 }
 
