@@ -1,6 +1,7 @@
 package Bibliotheque.infra.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,6 +26,7 @@ public class LivreModel {
 
     @ManyToOne(fetch = FetchType.LAZY) // ne charge que les données nécessaires - mode paresseux
     @JoinColumn(name = "auteur_id") //colonne de jointure
+    @JsonBackReference
     private AuteurModel auteur;
 }
 

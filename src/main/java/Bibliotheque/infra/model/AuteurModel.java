@@ -1,5 +1,6 @@
 package Bibliotheque.infra.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +22,7 @@ public class AuteurModel {
     private String biographie;
 
     @OneToMany(mappedBy = "auteur")
+    @JsonManagedReference
     private List<LivreModel> livres = new ArrayList<>();
 
 }
