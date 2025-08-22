@@ -1,0 +1,65 @@
+INSERT INTO AUTEUR (nom, prenom, biographie) VALUES
+('Hugo', 'Victor', 'Écrivain français du XIXème siècle'),
+('Dumas', 'Alexandre', 'Auteur des célèbres romans historiques'),
+('Austen', 'Jane', 'Romancière anglaise du XIXème siècle'),
+('Orwell', 'George', 'Auteur britannique connu pour 1984'),
+('Rowling', 'J.K.', 'Auteur de la saga Harry Potter'),
+('Tolkien', 'J.R.R.', 'Auteur du Seigneur des Anneaux'),
+('Verne', 'Jules', 'Pionnier de la science-fiction'),
+('Camus', 'Albert', 'Écrivain et philosophe français'),
+('Hemingway', 'Ernest', 'Romancier américain'),
+('Fitzgerald', 'F. Scott', 'Auteur de Gatsby le Magnifique');
+
+
+
+INSERT INTO LIVRE (titre, date_creation, prix, isbn, auteur_id) VALUES
+('Les Misérables', DATE '1862-04-03', 19.99, '978-0000000001', 1),
+('Notre-Dame de Paris', DATE '1831-03-16', 14.50, '978-0000000002', 1),
+('Les Contemplations', DATE '1856-09-01', 12.90, '978-0000000003', 1),
+('La Légende des siècles', DATE '1859-04-01', 15.90, '978-0000000004', 1),
+('Les Châtiments', DATE '1853-11-01', 13.50, '978-0000000005', 1);
+('Les Trois Mousquetaires', DATE '1844-03-01', 17.50, '978-0000000011', 2),
+('Le Comte de Monte-Cristo', DATE '1846-08-28', 18.99, '978-0000000012', 2),
+('La Reine Margot', DATE '1845-01-01', 15.99, '978-0000000013', 2),
+('Vingt ans après', DATE '1845-01-20', 16.50, '978-0000000014', 2),
+('Le Vicomte de Bragelonne', DATE '1847-01-01', 19.90, '978-0000000015', 2);
+('Orgueil et Préjugés', DATE '1813-01-28', 13.90, '978-0000000021', 3),
+('Raison et Sentiments', DATE '1811-10-30', 12.50, '978-0000000022', 3),
+('Emma', DATE '1815-12-25', 14.90, '978-0000000023', 3),
+('Persuasion', DATE '1817-12-20', 13.50, '978-0000000024', 3),
+('Mansfield Park', DATE '1814-05-09', 13.99, '978-0000000025', 3);
+('1984', DATE '1949-06-08', 16.90, '978-0000000031', 4),
+('La Ferme des animaux', DATE '1945-08-17', 11.99, '978-0000000032', 4),
+('Hommage à la Catalogne', DATE '1938-04-25', 13.50, '978-0000000033', 4),
+('Un peu d’air frais', DATE '1939-06-12', 12.99, '978-0000000034', 4),
+('Dans la dèche à Paris et à Londres', DATE '1933-01-09', 11.50, '978-0000000035', 4);
+('Harry Potter à l’école des sorciers', DATE '1997-06-26', 22.90, '978-0000000041', 5),
+('Harry Potter et la Chambre des secrets', DATE '1998-07-02', 22.90, '978-0000000042', 5),
+('Harry Potter et le Prisonnier d’Azkaban', DATE '1999-07-08', 22.90, '978-0000000043', 5),
+('Harry Potter et la Coupe de feu', DATE '2000-07-08', 24.90, '978-0000000044', 5),
+('Harry Potter et l’Ordre du Phénix', DATE '2003-06-21', 25.90, '978-0000000045', 5);
+('Le Seigneur des Anneaux : La Communauté de l’anneau', DATE '1954-07-29', 24.90, '978-0000000051', 6),
+('Le Seigneur des Anneaux : Les Deux Tours', DATE '1954-11-11', 24.90, '978-0000000052', 6),
+('Le Seigneur des Anneaux : Le Retour du roi', DATE '1955-10-20', 24.90, '978-0000000053', 6),
+('Le Hobbit', DATE '1937-09-21', 19.50, '978-0000000054', 6),
+('Le Silmarillion', DATE '1977-09-15', 21.99, '978-0000000055', 6);
+('Vingt mille lieues sous les mers', DATE '1870-06-20', 16.50, '978-0000000061', 7),
+('Le Tour du monde en quatre-vingts jours', DATE '1873-01-30', 15.90, '978-0000000062', 7),
+('Voyage au centre de la Terre', DATE '1864-11-25', 14.50, '978-0000000063', 7),
+('De la Terre à la Lune', DATE '1865-09-01', 13.90, '978-0000000064', 7),
+('L’Île mystérieuse', DATE '1874-01-01', 17.90, '978-0000000065', 7);
+('L’Étranger', DATE '1942-05-19', 12.90, '978-0000000071', 8),
+('La Peste', DATE '1947-06-10', 14.99, '978-0000000072', 8),
+('Le Mythe de Sisyphe', DATE '1942-10-10', 13.50, '978-0000000073', 8),
+('L’Homme révolté', DATE '1951-10-18', 14.99, '978-0000000074', 8),
+('La Chute', DATE '1956-05-05', 13.90, '978-0000000075', 8);
+('Le Vieil Homme et la Mer', DATE '1952-09-01', 12.50, '978-0000000081', 9),
+('Pour qui sonne le glas', DATE '1940-10-21', 15.90, '978-0000000082', 9),
+('L’Adieu aux armes', DATE '1929-09-27', 14.90, '978-0000000083', 9),
+('Paris est une fête', DATE '1964-05-01', 13.90, '978-0000000084', 9),
+('Les Neiges du Kilimandjaro', DATE '1936-08-01', 12.90, '978-0000000085', 9);
+('Gatsby le Magnifique', DATE '1925-04-10', 13.50, '978-0000000091', 10),
+('Tendre est la nuit', DATE '1934-04-12', 14.90, '978-0000000092', 10),
+('Les Enfants du jazz', DATE '1922-03-22', 11.99, '978-0000000093', 10),
+('Le Dernier Nabab', DATE '1941-05-01', 13.99, '978-0000000094', 10),
+('Hiver à la campagne', DATE '1922-12-01', 11.50, '978-0000000095', 10);
