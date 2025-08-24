@@ -5,5 +5,5 @@ https://apero-tech.fr/utiliser-une-base-h2-avec-springboot/
 Pourquoi vous ne devriez PAS utiliser Lombok @Data avec les entités JPA :
 https://www-linkedin-com.translate.goog/pulse/why-you-should-use-lombok-data-jpa-entities-ravindra-kundla-wsm7c?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=fr&_x_tr_pto=rq
 
-ec2-user@ip-172-31-42-60
-http://<PUBLIC_IP>:5000/h2-console
+
+
