@@ -6,7 +6,6 @@ import Bibliotheque.infra.repo.LivreJpaRepository;
 import Bibliotheque.infra.model.LivreModel;
 import Bibliotheque.rest.dto.LivreDto;
 import Bibliotheque.service.mapper.LivreMapper;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 

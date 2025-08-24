@@ -10,6 +10,9 @@ INSERT INTO AUTEUR (nom, prenom, biographie) VALUES
 ('Hemingway', 'Ernest', 'Romancier américain'),
 ('Fitzgerald', 'F. Scott', 'Auteur de Gatsby le Magnifique');
 
+INSERT INTO UTILISATEUR(mail, login, password, date_creation, date_suppression) VALUES
+('test@letest.fr', 'test','$2a$10$Dow1iK9eD2iRzE6s6bYQcuD8t3gA3Pq7Tn0vP/n3Nkk0WJ0c9HzOa', CURRENT_TIMESTAMP, NULL);
+
 INSERT INTO LIVRE (titre, date_creation, prix, isbn, auteur_id) VALUES
 ('Les Misérables', DATE '1862-04-03', 19.99, '978-0000000001', 1),
 ('Notre-Dame de Paris', DATE '1831-03-16', 14.50, '978-0000000002', 1),

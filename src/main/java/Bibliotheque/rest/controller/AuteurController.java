@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/auteurs")
+@RequestMapping(value = "/api/auteurs")
 public class AuteurController {
 
     private final AuteurService auteurService;

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping (value = "/livres")
+@RequestMapping (value = "/api/livres")
 public class LivreController {
 
     private final LivreService livresService;
