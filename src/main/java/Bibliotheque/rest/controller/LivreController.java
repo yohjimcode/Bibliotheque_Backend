@@ -26,7 +26,7 @@ public class LivreController {
         return ResponseEntity.ok(livres);
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<LivreDto>getLivre(@PathVariable Long id){
         Optional<LivreDto>livre = livresService.getLivre(id);
         if(livre.isPresent()){
@@ -36,19 +36,19 @@ public class LivreController {
         }
     }
 
-    @PostMapping("/created")
+    @PostMapping
     public ResponseEntity<LivreDto> createLivre(@RequestBody LivreDto livreDto){
         LivreDto livre = livresService.createLivre(livreDto);
-        return ResponseEntity.created(URI.create("/livres/created" + livre.getId())).body(livre);
+        return ResponseEntity.created(URI.create("/livre" + livre.getId())).body(livre);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<LivreDto>updateLivre(@PathVariable Long id, @RequestBody LivreDto livreDto){
         LivreDto updatedLivre = livresService.updateLivre(id,livreDto);
         return ResponseEntity.ok(updatedLivre);
     }
 
-    @DeleteMapping("/deleted/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<LivreDto> deletedLivre(@PathVariable Long id){
         boolean deleteLivre =  livresService.deleteLivre(id);
         if (deleteLivre) {
