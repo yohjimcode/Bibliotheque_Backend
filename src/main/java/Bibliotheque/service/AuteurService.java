@@ -20,7 +20,7 @@ public class AuteurService {
         this.auteurJpaRepository = auteurJpaRepository;
     }
 
-    public Optional<AuteurDto> getAuteur(int id) {
+    public Optional<AuteurDto> getAuteur(long id) {
         return auteurJpaRepository.findById(id).map(auteurMapper::toDto);
     }
 
@@ -34,21 +34,17 @@ public class AuteurService {
         return auteurMapper.toDto(saveAuteur);
     }
 
-    public AuteurDto updateAuteur(int id, AuteurDto auteurDto) {
+    public AuteurDto updateAuteur(long id, AuteurDto auteurDto) {
         AuteurModel auteurModel = auteurJpaRepository.findById(id).orElseThrow();
-        auteurModel.setNom(auteurDto.getNom());
-        auteurModel.setPrenom(auteurDto.getPrenom());
-        auteurModel.setBiographie(auteurDto.getBiographie());
+        auteurModel.setNomAuteur(auteurDto.getNomAuteur());
         return auteurMapper.toDto(auteurJpaRepository.save(auteurModel));
     }
 
-    public boolean deletedAuteur(int id ){
+    public boolean deletedAuteur(long id ){
         if(auteurJpaRepository.existsById(id)){
             auteurJpaRepository.deleteById(id);
             return true;
         }
         return false;
     }
-
-
 }

@@ -4,13 +4,14 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class LivreDto {
 
     private Long id;
     private String titre;
-    private AuteurDto auteur;
+    private List<AuteurDto> auteurs;
     private LocalDateTime dateCreation;
     private BigDecimal prix;
     private String isbn;

@@ -1,6 +1,7 @@
 package Bibliotheque.rest.controller;
 
 import Bibliotheque.rest.dto.LivreDto;
+import Bibliotheque.service.LivreApiService;
 import Bibliotheque.service.LivreService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +16,11 @@ import java.util.Optional;
 public class LivreController {
 
     private final LivreService livresService;
+    private final LivreApiService livreApiService;
 
-    public LivreController(LivreService livresService) {
+    public LivreController(LivreService livresService, LivreApiService livreApiService) {
         this.livresService = livresService;
+        this.livreApiService = livreApiService;
     }
 
     @GetMapping("/all")
@@ -56,5 +59,21 @@ public class LivreController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/info/{isbn}")
+    public ResponseEntity<LivreDto> getInfosLivre(@PathVariable String isbn) {
+        LivreDto infos = livreApiService.recupererInfosLivreParIsbn(isbn);
+        if (infos != null) {
+            return ResponseEntity.ok(infos);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/depuis-isbn")
+    public ResponseEntity<LivreDto> ajouterLivreDepuisIsbn(@RequestParam String isbn) {
+        LivreDto livre = livresService.ajouterLivreDepuisIsbn(isbn);
+        return ResponseEntity.ok(livre);
     }
 }

@@ -1,8 +1,13 @@
 package Bibliotheque.service.mapper;
 
+import Bibliotheque.infra.model.AuteurModel;
 import Bibliotheque.infra.model.LivreModel;
+import Bibliotheque.rest.dto.AuteurDto;
 import Bibliotheque.rest.dto.LivreDto;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 // mvn clean -> pour nettoyer
 @Component
@@ -24,7 +29,12 @@ public class LivreMapper {
         dto.setTitre(livreModel.getTitre());
         dto.setPrix(livreModel.getPrix());
         dto.setDateCreation(livreModel.getDateCreation());
-        dto.setAuteur(auteurMapper.toDto(livreModel.getAuteur()));
+        if (livreModel.getAuteurs() != null) {
+            List<AuteurDto> auteursDto = livreModel.getAuteurs().stream()
+                    .map(auteurMapper::toDto)
+                    .collect(Collectors.toList());
+            dto.setAuteurs(auteursDto);
+        }
         return dto;
     }
 
@@ -38,7 +48,12 @@ public class LivreMapper {
         model.setPrix(livreDto.getPrix());
         model.setDateCreation(livreDto.getDateCreation());
         model.setTitre(livreDto.getTitre());
-        model.setAuteur(auteurMapper.toModel(livreDto.getAuteur()));
+        if (livreDto.getAuteurs() != null) {
+            List<AuteurModel> auteursModel = livreDto.getAuteurs().stream()
+                    .map(auteurMapper::toModel)
+                    .collect(Collectors.toList());
+            model.setAuteurs(auteursModel);
+        }
         return model;
     }
 }

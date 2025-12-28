@@ -13,16 +13,11 @@ import java.util.List;
 public class AuteurModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column(name = "nom", nullable = false)
-    private String nom;
-    @Column(name = "prenom")
-    private String prenom;
-    @Column(name = "biographie", columnDefinition = "TEXT")
-    private String biographie;
+    private String nomAuteur;
 
-    @OneToMany(mappedBy = "auteur")
-    @JsonManagedReference
+    @ManyToMany(mappedBy = "auteurs")
     private List<LivreModel> livres = new ArrayList<>();
 
 }

@@ -18,7 +18,9 @@ public class CorsConfig {
                                 "http://localhost:4200",
                                 "http://bibliotheque-frontend.s3-website.eu-west-3.amazonaws.com"
                         )
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
